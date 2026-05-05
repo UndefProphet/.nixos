@@ -1,0 +1,33 @@
+{
+  flake.modules.nixos.terminal = {pkgs, ...}: {
+    hm.programs.tmux = {
+      enable = true;
+      terminal = "screen";
+      mouse = true;
+      keyMode = "vi";
+      focusEvents = false;
+      aggressiveResize = false;
+      baseIndex = 1;
+      clock24 = true;
+
+      extraConfig =
+        /*
+        conf
+        */
+        ''
+          setw -g pane-base-index 0
+
+          set -g status-keys vi
+
+          set -s escape-time       500
+          set -g history-limit     2000
+
+          set -g pane-base-index 1
+
+          # unbind-key -a # Unbind all keys
+          set -g prefix C-Space
+          bind C-space send-prefix
+        '';
+    };
+  };
+}
