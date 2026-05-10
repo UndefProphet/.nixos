@@ -5,6 +5,7 @@
     username,
     configdir,
     config,
+    configurationName,
     ...
   }: {
     # User shell
@@ -44,8 +45,7 @@
 
       programs.nh = {
         enable = true;
-        # flake = "${location}#${configName}";
-        flake = configdir;
+        flake = "${configdir}#${configurationName}";
       };
 
       home.shellAliases = let
