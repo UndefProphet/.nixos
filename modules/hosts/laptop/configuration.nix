@@ -7,9 +7,9 @@
     # stateVersion = lib.trivial.oldestSupportedRelease;
     stateVersion = "25.11";
     system = "x86_64-linux";
-    disks = [
-      "/dev/nvme0n1"
-    ];
+    
+    nixos = "/dev/nvme0n1";
+    swapSize = "16G";
 
     username = "tar";
     hostname = "lapman";
@@ -30,8 +30,13 @@
         # default
         nix
         laptop
-        self.diskoConfigurations.laptop
-        {_module.args.disks = disks;}
+        self.diskoConfigurations.default
+        {
+          _module.args = {
+            inherit nixos;
+            inherit swapSize;
+          };
+        }
         display-manager
         systemd-boot
         sudo-rs

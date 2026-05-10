@@ -7,10 +7,11 @@
     # stateVersion = lib.trivial.oldestSupportedRelease;
     stateVersion = "25.11";
     system = "x86_64-linux";
-    disks = [
-      "/dev/nvme0n1"
-      "/dev/sda"
-    ];
+    configurationName = "desktop";
+
+    nixos = "/dev/nvme0n1";
+    home = "/dev/sda";
+    swapSize = "32G";
 
     username = "tar";
     hostname = "deskman";
@@ -25,14 +26,21 @@
         inherit hostname;
         inherit homedir;
         inherit configdir;
+        inherit configurationName;
       };
 
       modules = with self.modules.nixos; [
         # default
         nix
         desktop
-        self.diskoConfigurations.desktop
-        {_module.args.disks = disks;}
+        self.diskoConfigurations.default
+        {
+          _module.args = {
+            inherit nixos;
+            inherit home;
+            inherit swapSize;
+          };
+        }
         display-manager
         systemd-boot
         sudo-rs
