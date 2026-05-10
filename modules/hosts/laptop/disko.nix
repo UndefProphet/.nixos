@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.diskoConfigurations.desktop = {disks ? ["/dev/vda"], ...}: {
+  flake.diskoConfigurations.laptop = {disks ? ["/dev/vda"], ...}: {
     imports = [inputs.disko.nixosModules.disko];
     disko.devices = {
       disk = {
@@ -22,7 +22,6 @@
                   mountOptions = ["umask=0077"];
                 };
               };
-
               root = {
                 size = "100%";
                 content = {
@@ -31,6 +30,10 @@
                   subvolumes = {
                     "@rootfs" = {
                       mountpoint = "/";
+                    };
+                    "@home" = {
+                      mountOptions = ["compress=zstd"];
+                      mountpoint = "/home";
                     };
                     "@nix" = {
                       mountOptions = [
@@ -42,31 +45,8 @@
                     "@swap" = {
                       mountpoint = "/.swapvol";
                       swap = {
-                        swapfile.size = "32G";
+                        swapfile.size = "16G";
                       };
-                    };
-                  };
-                };
-              };
-            };
-          };
-        };
-
-        home = {
-          type = "disk";
-          device = builtins.elemAt disks 1;
-          content = {
-            type = "gpt";
-            partitions = {
-              home = {
-                size = "100%";
-                content = {
-                  type = "btrfs";
-                  extraArgs = ["-f"]; # Override existing partition
-                  subvolumes = {
-                    "@home" = {
-                      mountOptions = ["compress=zstd"];
-                      mountpoint = "/home";
                     };
                   };
                 };

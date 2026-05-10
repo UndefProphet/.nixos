@@ -9,15 +9,14 @@
     system = "x86_64-linux";
     disks = [
       "/dev/nvme0n1"
-      "/dev/sda"
     ];
 
     username = "tar";
-    hostname = "deskman";
+    hostname = "lapman";
     homedir = "/home/${username}";
     configdir = "${homedir}/.nixos";
   in {
-    desktop = inputs.nixpkgs.lib.nixosSystem {
+    laptop = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit stateVersion;
@@ -30,8 +29,8 @@
       modules = with self.modules.nixos; [
         # default
         nix
-        desktop
-        self.diskoConfigurations.desktop
+        laptop
+        self.diskoConfigurations.laptop
         {_module.args.disks = disks;}
         display-manager
         systemd-boot
@@ -61,17 +60,4 @@
       ];
     };
   };
-
-  #
-  # flake.nixosConfigurations.laptop = mkNixosSystem {
-  #   system = "x86_64-linux";
-  #   hostName = "lapman";
-  #   modules = with self.modules.nixos; [
-  #     default
-  #     laptop
-  #     systemd-boot
-  #   ];
-  #   users = with self.modules.nixos; [
-  #   ];
-  # };
 }

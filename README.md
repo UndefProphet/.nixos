@@ -4,7 +4,8 @@
 Text.
 
 ### Systems
-desktop
+desktop - deskman
+laptop - lapman
 
 ### Packages
 neovim
