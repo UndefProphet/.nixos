@@ -7,7 +7,7 @@
     # stateVersion = lib.trivial.oldestSupportedRelease;
     stateVersion = "25.11";
     system = "x86_64-linux";
-    
+
     nixos = "/dev/nvme0n1";
     swapSize = "16G";
 
@@ -61,6 +61,7 @@
         neomutt
         firefox
         obs
+        opencode
         yt-dlp
       ];
     };

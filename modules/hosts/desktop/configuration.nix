@@ -65,6 +65,7 @@
         neomutt
         firefox
         obs
+        opencode
         yt-dlp
       ];
     };
