@@ -38,7 +38,7 @@
           };
         }
         display-manager
-        systemd-boot
+        grub
         sudo-rs
         audio
         networking
