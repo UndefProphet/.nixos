@@ -1,12 +1,10 @@
 {
-  inputs,
-  self,
   lib,
   ...
 }: {
-  flake.modules.nixos.laptop = {config, ...}: {
+  flake.modules.nixos.laptop = {modulesPath, config, ...}: {
     imports = [
-      # (modulesPath + "/installer/scan/not-detected.nix")
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
     boot.initrd.availableKernelModules = [
       "nvme"
