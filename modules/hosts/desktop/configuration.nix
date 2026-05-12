@@ -13,6 +13,14 @@
     home = "/dev/sda";
     swapSize = "32G";
 
+    # Gpu passthrough
+    gpu-iommu-ids = [
+      "10de:1f06"
+      "10de:10f9"
+      "10de:1ada"
+      "10de:1adb"
+    ];
+
     username = "tar";
     hostname = "deskman";
     homedir = "/home/${username}";
@@ -49,6 +57,14 @@
         ssh
         secrets
         stylix
+
+        # Nixos
+        virtualisation
+        gpu-passthrough {
+          _module.args = {
+            ids = gpu-iommu-ids;
+          };
+        }
 
         # User
         user
