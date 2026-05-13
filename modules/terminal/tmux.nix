@@ -15,7 +15,7 @@
         conf
         */
         ''
-          setw -g pane-base-index 0
+          setw -g pane-base-index 1
 
           set -g status-keys vi
 
