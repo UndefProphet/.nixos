@@ -2,7 +2,7 @@
 {
   description = "Potato";
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
     disko = {
@@ -16,6 +16,10 @@
       type = "github";
       owner = "hercules-ci";
       repo = "flake-parts";
+    };
+    fuzzy-search-yazi = {
+      url = "github:onelocked/fuzzy-search.yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     glide-browser = {
       url = "github:glide-browser/glide.nix";
