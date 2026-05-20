@@ -1,6 +1,6 @@
 {lib, ...}: {
   plugins.neo-tree = {
-    enable = true;
+    enable = false;
     settings = {
       sources = ["filesystem" "buffers" "git_status"];
       # source_selector = {

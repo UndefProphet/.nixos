@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./colorscheme.nix
     ./bufferline.nix
     ./mini.nix
     ./lualine.nix
@@ -13,6 +14,8 @@
     ./telescope.nix
     ./dashboard.nix
     ./snacks.nix
+    ./yazi.nix
+    ./colorizer.nix
   ];
 
   #plugins.lazy.enable = true;

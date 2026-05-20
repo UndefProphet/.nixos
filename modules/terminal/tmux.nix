@@ -15,8 +15,6 @@
         conf
         */
         ''
-          setw -g pane-base-index 1
-
           set -g status-keys vi
 
           set -s escape-time       500
