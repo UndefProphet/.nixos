@@ -18,6 +18,7 @@
   };
 
   flake.modules.nixos.niri = {
+    inputs',
     pkgs,
     lib,
     username,
@@ -31,7 +32,7 @@
 
     programs.niri = {
       enable = true;
-      package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri;
+      package = inputs'.niri.packages.niri;
     };
     programs.uwsm = {
       enable = true;

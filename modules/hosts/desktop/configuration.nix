@@ -1,7 +1,8 @@
 {
-  self,
-  inputs,
-  ...
+self,
+inputs,
+withSystem,
+...
 }: {
   flake.nixosConfigurations = let
     # stateVersion = lib.trivial.oldestSupportedRelease;
@@ -26,7 +27,7 @@
     homedir = "/home/${username}";
     configdir = "${homedir}/.nixos";
   in {
-    desktop = inputs.nixpkgs.lib.nixosSystem {
+    desktop = withSystem "x86_64-linux" ({self', inputs', ...}: inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit stateVersion;
@@ -35,6 +36,8 @@
         inherit homedir;
         inherit configdir;
         inherit configurationName;
+        inherit self';
+        inherit inputs';
       };
 
       modules = with self.modules.nixos; [
@@ -74,6 +77,12 @@
         environment
         niri
 
+        {
+          services.tailscale = {
+            enable = true;
+          };
+        }
+
         # Packages
         packages
         spotify
@@ -84,19 +93,6 @@
         opencode
         yt-dlp
       ];
-    };
+    });
   };
-
-  #
-  # flake.nixosConfigurations.laptop = mkNixosSystem {
-  #   system = "x86_64-linux";
-  #   hostName = "lapman";
-  #   modules = with self.modules.nixos; [
-  #     default
-  #     laptop
-  #     systemd-boot
-  #   ];
-  #   users = with self.modules.nixos; [
-  #   ];
-  # };
 }
