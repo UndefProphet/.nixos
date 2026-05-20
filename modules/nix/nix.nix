@@ -20,12 +20,13 @@
         experimental-features = [
           "nix-command"
           "flakes"
+          "pipe-operators"
         ];
       };
     };
 
     # Packages
-    nixpkgs.config.allowBroken = false;
+   nixpkgs.config.allowBroken = false;
     nixpkgs.config.allowUnfree = true;
     environment.variables = {
       NIXPKGS_ALLOW_UNFREE = 1;
