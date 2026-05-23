@@ -60,6 +60,7 @@ withSystem,
         ssh
         secrets
         stylix
+        auto-mount-usb
 
         # Nixos
         virtualisation
