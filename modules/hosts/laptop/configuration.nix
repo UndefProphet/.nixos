@@ -42,6 +42,7 @@
         sudo-rs
         audio
         networking
+        wireless
         ssh
         secrets
         stylix
