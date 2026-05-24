@@ -85,14 +85,10 @@ withSystem,
         }
 
         # Packages
-        packages
-        spotify
-        thunderbird
-        neomutt
-        firefox
-        obs
-        opencode
-        yt-dlp
+        packages-nix-utilities
+        packages-wayland
+        packages-generic
+        packages-creative
       ];
     });
   };

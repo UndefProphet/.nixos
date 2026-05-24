@@ -9,7 +9,7 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  flake.modules.nixos.packages = {
+  flake.modules.nixos.discord = {
     home-manager.sharedModules = [inputs.nixcord.homeModules.nixcord];
     hm = {
       programs.abaddon.enable = true;

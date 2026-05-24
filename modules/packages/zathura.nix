@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.packages = {lib, ...}: {
+  flake.modules.nixos.zathura = {lib, ...}: {
     hm = {config, ...}: {
       programs.zathura = {
         enable = true;
