@@ -59,10 +59,10 @@ withSystem,
         networking
         ssh
         secrets
-        stylix
-        auto-mount-usb
 
         # Nixos
+        stylix
+        auto-mount-usb
         virtualisation
         gpu-passthrough {
           _module.args = {
