@@ -1,14 +1,8 @@
-{inputs, lib, ...}: {
-
-
-  # flake-file.inputs.fuzzy-search-yazi = {
-  #   url = "github:onelocked/fuzzy-search.yazi";
-  #   inputs.nixpkgs.follows = "nixpkgs";
-  # };
+{lib, ...}: {
 
   flake.modules.nixos.terminal = {pkgs, ...}: {
+    imports = [ ./_yazi/git.nix ];
     hm = {
-      # imports = [ inputs.fuzzy-search-yazi.homeManagerModules.default ];
       programs.yazi = {
         enable = true;
         shellWrapperName = "Y";
@@ -16,26 +10,10 @@
         plugins = {
           inherit (pkgs.yaziPlugins) piper;
           inherit (pkgs.yaziPlugins) toggle-pane;
-
         };
 
-        # yaziPlugins.plugins = {
-        #   fuzzy-search = {
-        #     enable = true; # enables the plugin
-        #     enableFishIntegration = true;  # Enables the Fish function for Zoxide Shift + Z
-        #     depth = 3; # eza tree depth control default is =TL=3
-        #     keymaps = {  # sets default keybinds see below
-        #       fd = true;
-        #       rg = true;
-        #       zoxide = true;
-        #     };
-        #   };
-        # };
-
         extraPackages = with pkgs; [
-          starship
-          git
-          lazygit
+          # starship
         ];
 
         settings = {
@@ -72,7 +50,7 @@
               }
               {
                 url = "*/";
-                run = ''piper -- ${lib.getExe eza} --color=always --icons=always --no-quotes -TL=3 "$1"'';
+                run = ''piper -- ${lib.getExe eza} --color=always --icons=always --no-quotes -TL=3 -l --git --no-permissions --no-user --no-filesize --no-time "$1"'';
               }
               {
                 url = "*.txt.gz";
@@ -112,24 +90,23 @@
           };
         };
 
-        # initLua =
-        #   # lua
-        #   ''
-        #     function Linemode:size_and_mtime()
-        #       local time = math.floor(self._file.cha.mtime or 0)
-        #       if time == 0 then
-        #         time = ""
-        #       elseif os.date("%Y", time) == os.date("%Y") then
-        #         time = os.date("%b %d %H:%M", time)
-        #       else
-        #         time = os.date("%b %d  %Y", time)
-        #       end
-        #
-        #       local size = self._file:size()
-        #       return string.format("%s %s", size and ya.readable_size(size) or "-", time)
-        #     end
-        #     '';
-        #
+        initLua =
+          # lua
+          ''
+            function Linemode:size_and_mtime()
+              local time = math.floor(self._file.cha.mtime or 0)
+              if time == 0 then
+                time = ""
+              elseif os.date("%Y", time) == os.date("%Y") then
+                time = os.date("%b %d %H:%M", time)
+              else
+                time = os.date("%b %d  %Y", time)
+              end
+              local size = self._file:size()
+              return string.format("%s %s", size and ya.readable_size(size) or "-", time)
+            end
+            '';
+
         keymap = {
           mgr.prepend_keymap = [
             {
@@ -139,25 +116,6 @@
             }
           ];
         };
-        # keymap = {
-        #   mgr.prepend_keymap = [
-        #     {
-        #       on = [ "z" ];
-        #       run = "plugin fuzzy-search -- fd --TL=3";
-        #       desc = "Fuzzy Find Files";
-        #     }
-        #     {
-        #       on = [ "<S-s>" ];
-        #       run = "plugin fuzzy-search -- rg --TL=3";
-        #       desc = "Ripgrep Search";
-        #     }
-        #     {
-        #       on = [ "<S-z>" ];
-        #       run = "plugin fuzzy-search -- zoxide --TL=3";
-        #       desc = "Zoxide Search";
-        #     }
-        #   ];
-        # };
 
       };
     };

@@ -1,0 +1,53 @@
+{pkgs,...}:{
+
+  hm = {
+
+    programs.yazi = {
+      extraPackages = with pkgs; [
+        git
+        lazygit
+      ];
+
+      plugins = with pkgs.yaziPlugins; {
+        git = {
+          package = git;
+          setup = true;
+          settings = {
+            order = 1500;
+          };
+        };
+      };
+
+      settings = {
+        plugin.prepend_fetchers = [
+          {
+            id    = "git";
+            group = "git";
+            url = "*";
+            run = "git";
+          }
+          {
+            id    = "git";
+            group = "git";
+            url = "*/";
+            run = "git";
+          }
+        ];
+      };
+
+      theme = {
+        git = {
+          # unknown_sign  = "x";
+          # modified_sign = "x";
+          # deleted_sign  = "x";
+          # clean_sign    = "x";
+          unknown_sign  = "?";
+          modified_sign = "M";
+          deleted_sign  = "D";
+          clean_sign    = " ";
+        };
+      };
+
+    };
+  };
+}
