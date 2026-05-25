@@ -45,7 +45,10 @@
         wireless
         ssh
         secrets
+
+        # Nixos
         stylix
+        auto-mount-usb
 
         # User
         user
@@ -54,6 +57,12 @@
         terminal
         environment
         niri
+
+        {
+          services.tailscale = {
+            enable = true;
+          };
+        }
 
         # Packages
         packages-nix-utilities
