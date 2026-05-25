@@ -50,7 +50,7 @@
               }
               {
                 url = "*/";
-                run = ''piper -- ${lib.getExe eza} --color=always --icons=always --no-quotes -TL=3 -l --git --no-permissions --no-user --no-filesize --no-time "$1"'';
+                run = ''piper -- ${lib.getExe eza} --color=always --icons=always --no-quotes -TL=3 -l --git --no-permissions --no-user --no-filesize --no-time --group-directories-first "$1"'';
               }
               {
                 url = "*.txt.gz";
