@@ -13,15 +13,13 @@
     programs.fish.enable = true;
 
     hm = {...}: {
-      programs.foot = {
-        enable = true;
-        server.enable = true;
-        settings = {
-          main = {
-            pad = "10x10";
+        programs.kitty= {
+          enable = true;
+          settings = {
+            window_padding_width = 10;
+            confirm_os_window_close = 0;
           };
         };
-      };
 
         programs.fish = {
           enable = config.programs.fish.enable;
