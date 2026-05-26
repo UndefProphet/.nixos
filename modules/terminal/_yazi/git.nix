@@ -1,8 +1,8 @@
 {pkgs,...}:{
 
   hm = {
-
     programs.yazi = {
+
       extraPackages = with pkgs; [
         git
         lazygit
@@ -37,13 +37,11 @@
 
       theme = {
         git = {
-          # unknown_sign  = "x";
-          # modified_sign = "x";
-          # deleted_sign  = "x";
-          # clean_sign    = "x";
           unknown_sign  = "?";
           modified_sign = "M";
+          added_sign    = "A";
           deleted_sign  = "D";
+          untracked_sign= "U";
           clean_sign    = " ";
         };
       };
