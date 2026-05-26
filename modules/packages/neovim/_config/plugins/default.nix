@@ -8,12 +8,10 @@
     ./bufferline.nix
     ./mini.nix
     ./lualine.nix
-    ./neotree.nix
     ./lazygit.nix
     ./gitsigns.nix
     ./telescope.nix
     ./dashboard.nix
-    ./snacks.nix
     ./yazi.nix
     ./colorizer.nix
   ];
