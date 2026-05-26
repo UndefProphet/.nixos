@@ -17,10 +17,6 @@
       owner = "hercules-ci";
       repo = "flake-parts";
     };
-    fuzzy-search-yazi = {
-      url = "github:onelocked/fuzzy-search.yazi";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     glide-browser = {
       url = "github:glide-browser/glide.nix";
       inputs = {
