@@ -21,6 +21,15 @@
           };
         };
 
+        xdg.terminal-exec = {
+          enable = true;
+          settings = {
+            default = [
+              "kitty.desktop"
+            ];
+          };
+        };
+
         programs.fish = {
           enable = config.programs.fish.enable;
           # shellInit = ''
