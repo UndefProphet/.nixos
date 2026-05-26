@@ -6,17 +6,25 @@
       ./_yazi/mux.nix
     ];
 
-    hm = {
+    hm = {config,...}:{
       programs.yazi = {
         enable = true;
         shellWrapperName = "Y";
 
-        plugins = {
-          inherit (pkgs.yaziPlugins) piper;
-          inherit (pkgs.yaziPlugins) toggle-pane;
+        plugins = with pkgs.yaziPlugins; {
+          inherit piper;
+          inherit toggle-pane;
+
+          starship = {
+            package = starship;
+            setup = true;
+            settings = {
+              config_file = config.programs.starship.configPath;
+            };
+          };
           
           full-border = {
-            package = pkgs.yaziPlugins.full-border;
+            package = full-border;
             setup = true;
             settings = {
               type = lib.mkLuaInline "ui.Border.PLAIN";
