@@ -1,7 +1,11 @@
 {lib, ...}: {
 
   flake.modules.nixos.terminal = {pkgs, ...}: {
-    imports = [ ./_yazi/git.nix ];
+    imports = [
+      ./_yazi/git.nix 
+      ./_yazi/mux.nix
+    ];
+
     hm = {
       programs.yazi = {
         enable = true;
@@ -10,11 +14,15 @@
         plugins = {
           inherit (pkgs.yaziPlugins) piper;
           inherit (pkgs.yaziPlugins) toggle-pane;
+          
+          full-border = {
+            package = pkgs.yaziPlugins.full-border;
+            setup = true;
+            settings = {
+              type = lib.mkLuaInline "ui.Border.PLAIN";
+            };
+          };
         };
-
-        extraPackages = with pkgs; [
-          # starship
-        ];
 
         settings = {
           mgr = {
@@ -47,10 +55,6 @@
               {
                 url = "*.qcow2";
                 run = ''piper -- ${qemu-img} info "$1" | ${bat} -l asa'';
-              }
-              {
-                url = "*/";
-                run = ''piper -- ${lib.getExe eza} --color=always --icons=always --no-quotes -TL=3 -l --git --no-permissions --no-user --no-filesize --no-time --group-directories-first "$1"'';
               }
               {
                 url = "*.txt.gz";
