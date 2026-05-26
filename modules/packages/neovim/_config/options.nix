@@ -11,6 +11,13 @@
     expandtab = true;
     autoindent = true;
 
+    # visual
+    list = true;
+    listchars = {
+      tab = "• ";
+      trail = "•";
+    };
+
     # Wrapping & UI
     wrap = true;
     linebreak = true;
