@@ -42,8 +42,11 @@
 
         programs.nix-your-shell.enable = true;
         programs.zoxide.enable = true;
-        programs.starship.enable = true;
         programs.lsd.enable = true;
+        programs.starship = {
+          enable = true;
+          enableTransience = true;
+        };
         programs.eza = {
           enable = true;
           theme = {
