@@ -1,14 +1,17 @@
 {
   self,
   inputs,
+  withSystem,
   ...
 }: {
   flake.nixosConfigurations = let
     # stateVersion = lib.trivial.oldestSupportedRelease;
     stateVersion = "25.11";
     system = "x86_64-linux";
+    configurationName = "laptop";
 
     nixos = "/dev/nvme0n1";
+    home = null;
     swapSize = "16G";
 
     username = "tar";
@@ -16,7 +19,7 @@
     homedir = "/home/${username}";
     configdir = "${homedir}/.nixos";
   in {
-    laptop = inputs.nixpkgs.lib.nixosSystem {
+    laptop = withSystem "x86_64-linux" ({self', inputs', ...}: inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
         inherit stateVersion;
@@ -24,6 +27,9 @@
         inherit hostname;
         inherit homedir;
         inherit configdir;
+        inherit configurationName;
+        inherit self';
+        inherit inputs';
       };
 
       modules = with self.modules.nixos; [
@@ -70,6 +76,6 @@
         packages-generic
         packages-creative
       ];
-    };
+    });
   };
 }
