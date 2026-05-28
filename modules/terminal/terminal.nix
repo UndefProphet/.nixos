@@ -48,17 +48,30 @@
           enableTransience = true;
         };
         programs.eza = {
+          package = pkgs.eza.overrideAttrs (o: {
+            patches = (o.patches or [ ]) ++ [ ./_eza/custom-icons.patch ];
+            doCheck = false;
+          });
           enable = true;
-          theme = {
-            git = {
-              new = "N";
-              modified = "M";
-              deleted = "D";
-              renamed = "R";
-              ignored = " ";
-              conflicted = "!";
-            };
-          };
+          # theme = {
+          #
+          #   git = {
+          #     # added_sign = "";
+          #     # clean_sign = " ";
+          #     # deleted_sign = "";
+          #     # modified_sign = "";
+          #     # unknown_sign = "?";
+          #     # untracked_sign = "U";
+          #
+          #     # notmodified  = " ";
+          #     # new          = "";
+          #     # renamed      = "";
+          #     # typechange   = "󱅅";
+          #     # ignored      = "";
+          #
+          #   };
+          #
+          # };
         };
 
         programs.btop.enable = true;
