@@ -16,6 +16,21 @@
     ./colorizer.nix
   ];
 
+
+  # plugins.snacks = {
+  #   enable = true;
+  #   settings = {
+  #     indent = {
+  #       enabled = true;
+  #       char = "•";
+  #     };
+  #     scope = {
+  #       enabled = true;
+  #       char = "•";
+  #     };
+  #   };
+  # };
+
   #plugins.lazy.enable = true;
   plugins.tmux-navigator.enable = true;
 
