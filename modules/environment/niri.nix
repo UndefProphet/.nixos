@@ -272,7 +272,7 @@
                 ];
               };
               "Mod+b" = {
-                action.spawn = ["glide-browser"];
+                action.spawn = ["glide"];
               };
 
               "XF86AudioRaiseVolume" = {
