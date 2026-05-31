@@ -40,6 +40,7 @@
         {
           _module.args = {
             inherit nixos;
+            inherit home;
             inherit swapSize;
           };
         }
