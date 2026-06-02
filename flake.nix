@@ -60,6 +60,12 @@
       ref = "main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-core = {
+      type = "github";
+      owner = "manic-systems";
+      repo = "nixos-core";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-credentials = {
       url = "git+ssh://git@github.com/UndefProphet/.nixos.credentials";
       flake = false;

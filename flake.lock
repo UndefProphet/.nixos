@@ -425,6 +425,26 @@
         "type": "github"
       }
     },
+    "nixos-core": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780223676,
+        "narHash": "sha256-7x7KzH5p+VDBvvzpCjkRcVhNm6fIty7WYgI7sPq1SCw=",
+        "owner": "manic-systems",
+        "repo": "nixos-core",
+        "rev": "20b5f8916a3fde2f02bccd2e1f2795ab511aab5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manic-systems",
+        "repo": "nixos-core",
+        "type": "github"
+      }
+    },
     "nixos-credentials": {
       "flake": false,
       "locked": {
@@ -640,6 +660,7 @@
         "niri-flake": "niri-flake",
         "nix-index-database": "nix-index-database",
         "nixcord": "nixcord",
+        "nixos-core": "nixos-core",
         "nixos-credentials": "nixos-credentials",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",

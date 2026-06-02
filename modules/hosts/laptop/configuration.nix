@@ -46,6 +46,7 @@
         }
         display-manager
         grub
+        rs-core
         sudo-rs
         audio
         networking
