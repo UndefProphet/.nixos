@@ -332,7 +332,7 @@
                 repeat = false;
                 action."toggle-overview" = {};
               };
-              "Mod+X" = {
+              "Mod+Q" = {
                 repeat = false;
                 action."close-window" = {};
               };
