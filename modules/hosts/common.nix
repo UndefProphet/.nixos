@@ -1,0 +1,41 @@
+{self, ...}:{
+  flake.modules.nixos.common = {
+    imports = with self.modules.nixos; [
+
+      # default
+      nix
+      display-manager
+      grub
+      rs-core
+      sudo-rs
+      audio
+      networking
+      ssh
+      secrets
+
+      # NixOS
+      stylix
+      auto-mount-usb
+
+      # User
+      user
+      home-manager
+      git
+      terminal
+      environment
+      hyprland
+
+      {
+        services.tailscale = {
+          enable = true;
+        };
+      }
+
+      # Packages
+      packages-nix-utilities
+      packages-wayland
+      packages-generic
+      packages-creative
+    ];
+  };
+}

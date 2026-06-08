@@ -34,8 +34,8 @@
 
       modules = with self.modules.nixos; [
         # default
-        nix
         laptop
+        common
         self.diskoConfigurations.default
         {
           _module.args = {
@@ -44,39 +44,7 @@
             inherit swapSize;
           };
         }
-        display-manager
-        grub
-        rs-core
-        sudo-rs
-        audio
-        networking
         wireless
-        ssh
-        secrets
-
-        # Nixos
-        stylix
-        auto-mount-usb
-
-        # User
-        user
-        home-manager
-        git
-        terminal
-        environment
-        hyprland
-
-        {
-          services.tailscale = {
-            enable = true;
-          };
-        }
-
-        # Packages
-        packages-nix-utilities
-        packages-wayland
-        packages-generic
-        packages-creative
       ];
     });
   };

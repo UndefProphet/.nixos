@@ -42,8 +42,8 @@ withSystem,
 
       modules = with self.modules.nixos; [
         # default
-        nix
         desktop
+        common
         self.diskoConfigurations.default
         {
           _module.args = {
@@ -52,44 +52,14 @@ withSystem,
             inherit swapSize;
           };
         }
-        display-manager
-        grub
-        rs-core
-        sudo-rs
-        audio
-        networking
-        ssh
-        secrets
 
         # Nixos
-        stylix
-        auto-mount-usb
         virtualisation
         gpu-passthrough {
           _module.args = {
             ids = gpu-iommu-ids;
           };
         }
-
-        # User
-        user
-        home-manager
-        git
-        terminal
-        environment
-        hyprland
-
-        {
-          services.tailscale = {
-            enable = true;
-          };
-        }
-
-        # Packages
-        packages-nix-utilities
-        packages-wayland
-        packages-generic
-        packages-creative
       ];
     });
   };
