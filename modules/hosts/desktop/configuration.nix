@@ -77,7 +77,7 @@ withSystem,
         git
         terminal
         environment
-        niri
+        hyprland
 
         {
           services.tailscale = {
