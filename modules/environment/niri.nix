@@ -274,6 +274,9 @@
               "Mod+b" = {
                 action.spawn = ["glide"];
               };
+              "Mod+e" = {
+                action.spawn = ["glide"];
+              };
 
               "XF86AudioRaiseVolume" = {
                 allow-when-locked = true;
