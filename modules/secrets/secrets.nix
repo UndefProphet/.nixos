@@ -20,7 +20,6 @@
   flake.modules.nixos.secrets = {
     config,
     lib,
-    username,
     ...
   }: {
     imports =
@@ -30,7 +29,7 @@
     sops = {
       defaultSopsFile = ./secrets/master.yaml;
       defaultSopsFormat = "yaml";
-      age.keyFile = "${config.home-manager.users.${username}.home.homeDirectory}/.config/sops/age/keys.txt";
+      age.keyFile = "${config.hm.home.homeDirectory}/.config/sops/age/keys.txt";
     };
   };
 }
