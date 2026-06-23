@@ -33,6 +33,11 @@
         PermitRootLogin = "prohibit-password";# Prevents root login with passwords
       };
     };
+    users.users.root= {
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMogwr9yqxa3C2pzi8uUmTFRTnXVW5bNdK8h8mm08oWI boink"
+      ];
+    };
     users.users.nixos = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMogwr9yqxa3C2pzi8uUmTFRTnXVW5bNdK8h8mm08oWI boink"
