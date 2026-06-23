@@ -10,8 +10,16 @@
       common = {
         "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["termfilechooser"];
       };
+
       niri = {
         default = lib.mkForce ["gnome"];
+        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["termfilechooser"];
+        "org.freedesktop.impl.portal.Secret" = lib.mkForce ["gnome-keyring"];
+        "org.freedesktop.impl.portal.Chooser" = lib.mkForce ["none"];
+      };
+
+      hyprland = {
+        default = lib.mkForce ["hyprland" "gtk"];
         "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["termfilechooser"];
         "org.freedesktop.impl.portal.Secret" = lib.mkForce ["gnome-keyring"];
         "org.freedesktop.impl.portal.Chooser" = lib.mkForce ["none"];
@@ -34,7 +42,7 @@
       path="$4"
       out="$5"
 
-      command="${lib.getExe pkgs.foot} --app-id=FileChooser -e ${lib.getExe pkgs.yazi}"
+      command="${lib.getExe pkgs.kitty} --app-id=FileChooser -e ${lib.getExe pkgs.yazi}"
 
       if [ "$save" = "1" ]; then
         set -- --chooser-file="$out" "$path"
