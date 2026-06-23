@@ -100,7 +100,7 @@
 
     hm.stylix.targets = {
       firefox = {
-        profileNames = ["default"];
+        profileNames = ["default" "streaming"];
         colorTheme.enable = true;
       };
 

@@ -9,123 +9,138 @@
     pkgs,
     lib,
     ...
-  }: {
-    # Home manager
-    hm = {config, ...}: {
-      imports = [inputs.glide-browser.homeModules.default];
+    }: {
+      # Home manager
+      hm = {config, ...}: {
+        imports = [inputs.glide-browser.homeModules.default];
 
-      programs.glide-browser = {
-        enable = true;
-        nativeMessagingHosts = [pkgs.keepassxc];
+        programs.glide-browser = {
+          enable = true;
+          nativeMessagingHosts = [pkgs.keepassxc];
 
-        profiles.default = {
-          name = "default";
-          isDefault = true;
-          settings = {
-            # Features
-            "image.jxl.enabled" = true;
+          profiles = let
+            defaults = {
+              settings = {
+                # Features
+                "image.jxl.enabled" = true;
 
-            # Themeing
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Enable userChrome.
-            "browser.aboutConfig.showWarning" = true; # Disable about:config warning.
-            "browser.startup.page" = 3; # restore session on startup
-            "layout.css.heading-selector.enabled" = true;
-            "layout.css.has-selector.enabled" = true;
-            "browser.tabs.allow_transparent_browser" = true; # Enable transperancy in the browser window.
+                # Themeing
+                "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # Enable userChrome.
+                "browser.aboutConfig.showWarning" = true; # Disable about:config warning.
+                "browser.startup.page" = 3; # restore session on startup
+                "layout.css.heading-selector.enabled" = true;
+                "layout.css.has-selector.enabled" = true;
+                "browser.tabs.allow_transparent_browser" = true; # Enable transperancy in the browser window.
 
-            # Sidebar
-            "sidebar.verticalTabs" = true; # Vertical tabs.
-            # "sidebar.visibility" = "expand-on-hover"; # Expand on hover.
-            "sidebar.expandOnHover" = true; # Expand on hover.
-            "sidebar.animation.enabled" = false; # Make everything instant.
-            "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks"; # Sidebar utilities at the bottom.
-          };
+                # Sidebar
+                "sidebar.verticalTabs" = true; # Vertical tabs.
+                # "sidebar.visibility" = "expand-on-hover"; # Expand on hover.
+                "sidebar.expandOnHover" = true; # Expand on hover.
+                "sidebar.animation.enabled" = false; # Make everything instant.
+                "sidebar.main.tools" = "aichat,syncedtabs,history,bookmarks"; # Sidebar utilities at the bottom.
+              };
 
-          # userChrome = ''
-          #   :root {
-          #     --tabpanel-background-color: transparent !important; /* browser background */
-          #
-          #     --toolbox-bgcolor: #1d2021d9 !important;
-          #     --toolbox-bgcolor-inactive: #1d2021d9 !important;
-          #   }
-          # '';
+              # userChrome = ''
+              #   :root {
+              #     --tabpanel-background-color: transparent !important; /* browser background */
+              #
+              #     --toolbox-bgcolor: #1d2021d9 !important;
+              #     --toolbox-bgcolor-inactive: #1d2021d9 !important;
+              #   }
+              # '';
 
-          extensions = {
-            force = true;
-            settings = {
-            };
-          };
+              extensions = {
+                force = true;
+                packages = with pkgs.nur.repos.rycee.firefox-addons; [
+                  ublock-origin
+                ];
+                settings = {
+                };
+              };
 
-          search.force = true;
-          search.engines = {
-            # Nix packages
-            nix-packages = {
-              name = "Nix Packages";
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
+              search.force = true;
+              search.engines = {
+                # Nix packages
+                nix-packages = {
+                  name = "Nix Packages";
+                  urls = [
                     {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["nixp"];
-            };
-
-            # Nix options
-            nix-options = {
-              name = "Nix Options";
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
+                      template = "https://search.nixos.org/packages";
+                      params = [
+                        {
+                          name = "channel";
+                          value = "unstable";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
                     }
                   ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["nixo"];
-            };
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  definedAliases = ["nixp"];
+                };
 
-            # Home manager options
-            home-options = {
-              name = "Nix Home Manager";
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com";
-                  params = [
+                # Nix options
+                nix-options = {
+                  name = "Nix Options";
+                  urls = [
                     {
-                      name = "release";
-                      value = "master";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
+                      template = "https://search.nixos.org/options";
+                      params = [
+                        {
+                          name = "channel";
+                          value = "unstable";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
                     }
                   ];
-                }
-              ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["hm"];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  definedAliases = ["nixo"];
+                };
+
+                # Home manager options
+                home-options = {
+                  name = "Nix Home Manager";
+                  urls = [
+                    {
+                      template = "https://home-manager-options.extranix.com";
+                      params = [
+                        {
+                          name = "release";
+                          value = "master";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  definedAliases = ["hm"];
+                };
+              };
+            };
+
+          in {
+            default = defaults // {
+              name = "default";
+              isDefault = true;
+              id = 0;
+            };
+            streaming = defaults // {
+              name = "streaming";
+              isDefault = false;
+              id = 1;
             };
           };
         };
-      };
 
       xdg.mimeApps = let
         browser = ["glide-browser.desktop"];
