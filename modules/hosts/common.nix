@@ -32,6 +32,8 @@
         };
       }
 
+      gaming
+
       # Packages
       packages-nix-utilities
       packages-wayland
