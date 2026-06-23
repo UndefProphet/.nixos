@@ -122,6 +122,8 @@
           vi = "nvim";
           vim = "nvim";
 
+          y = "yazi";
+
           # Utilities
           disks = lib.getExe pkgs.disktui;
           browse = lib.getExe pkgs.yazi;
