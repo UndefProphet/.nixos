@@ -5,7 +5,6 @@
       # default
       nix
       nur
-      display-manager
       grub
       rs-core
       sudo-rs
@@ -25,6 +24,7 @@
       terminal
       environment
       hyprland
+      hyprland-tty
 
       {
         services.tailscale = {

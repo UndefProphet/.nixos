@@ -5,6 +5,11 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
+    base16 = {
+      type = "github";
+      owner = "SenchoPens";
+      repo = "base16.nix";
+    };
     disko = {
       type = "github";
       owner = "nix-community";
@@ -29,6 +34,13 @@
       owner = "nix-community";
       repo = "home-manager";
       ref = "master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland = {
+      type = "github";
+      owner = "hyprwm";
+      repo = "Hyprland";
+      ref = "main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree = {
