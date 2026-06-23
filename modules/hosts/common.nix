@@ -4,6 +4,7 @@
 
       # default
       nix
+      nur
       display-manager
       grub
       rs-core

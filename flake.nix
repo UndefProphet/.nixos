@@ -77,6 +77,10 @@
       ref = "nixos-unstable";
     };
     nixvim.url = "github:nix-community/nixvim";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       type = "github";
       owner = "Mic92";
