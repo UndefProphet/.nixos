@@ -52,7 +52,9 @@
               extensions = {
                 force = true;
                 packages = with pkgs.nur.repos.rycee.firefox-addons; [
+                  keepassxc-browser
                   ublock-origin
+                  sponsorblock
                 ];
                 settings = {
                 };
