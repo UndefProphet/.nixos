@@ -126,9 +126,8 @@
 
           # Utilities
           disks = lib.getExe pkgs.disktui;
-          browse = lib.getExe pkgs.yazi;
-
-          your = "test";
+          audio = lib.getExe pkgs.wiremix;
+          wifi = lib.getExe pkgs.impala;
 
           # Improvements
           # ls = "lsd -lhFXN";
