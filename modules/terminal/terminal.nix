@@ -127,6 +127,7 @@
           # Utilities
           disks = lib.getExe pkgs.disktui;
           audio = lib.getExe pkgs.wiremix;
+          music = lib.getExe pkgs.cliamp;
           wifi = lib.getExe pkgs.impala;
 
           # Improvements
