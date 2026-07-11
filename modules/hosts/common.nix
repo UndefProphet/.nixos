@@ -10,6 +10,7 @@
       sudo-rs
       audio
       networking
+      avahi
       ssh
       secrets
 
