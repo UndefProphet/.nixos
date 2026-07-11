@@ -10,10 +10,6 @@ withSystem,
     system = "x86_64-linux";
     configurationName = "desktop";
 
-    nixos = "/dev/nvme0n1";
-    home = "/dev/sda";
-    swapSize = "32G";
-
     # Gpu passthrough
     gpu-iommu-ids = [
       "10de:1f06"
@@ -42,16 +38,8 @@ withSystem,
 
       modules = with self.modules.nixos; [
         # default
-        desktop
+        desktop 
         common
-        self.diskoConfigurations.default
-        {
-          _module.args = {
-            inherit nixos;
-            inherit home;
-            inherit swapSize;
-          };
-        }
 
         # Nixos
         virtualisation

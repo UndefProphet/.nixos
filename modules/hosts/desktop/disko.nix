@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   ...
 }: {
   # https://github.com/nix-community/disko
@@ -12,23 +11,15 @@
     ref = "master";
   };
 
-  imports = [
-    inputs.disko.flakeModules.default
-  ];
-
-  flake.diskoConfigurations.default = args @ {
-    os,
-    home ? null,
-    swapSize,
-    ...
-  }: {
+  flake.modules.nixos.desktop = {
     imports = [inputs.disko.nixosModules.disko];
     disko.devices = {
       disk =
         {
+
           main = {
             type = "disk";
-            device = os;
+            device = "/dev/disk/by-id/ata-INTENSO_SSD_1642403004000109";
             content = {
               type = "gpt";
               partitions = {
@@ -66,14 +57,9 @@
                         "@swap" = {
                           mountpoint = "/.swapvol";
                           swap = {
-                            swapfile.size = swapSize;
+                            # swapfile.size = swapSize;
+                            swapfile.size = "16G";
                           };
-                        };
-                      }
-                      // lib.optionalAttrs (args.home == null) {
-                        "@home" = {
-                          mountOptions = ["compress=zstd"];
-                          mountpoint = "/home";
                         };
                       };
                   };
@@ -81,11 +67,10 @@
               };
             };
           };
-        }
-        // lib.optionalAttrs (args.home != null) {
+
           home = {
             type = "disk";
-            device = args.home;
+            device = "/dev/disk/by-id/ata-INTEL_SSDSC2BB480G4_BTWL310201WY480QGN";
             content = {
               type = "gpt";
               partitions = {
