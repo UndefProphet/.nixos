@@ -75,7 +75,15 @@
 
       hm = {
         programs.vicinae.enable = true;
-        services.dunst.enable = true;
+        services.dunst = {
+          enable = true;
+          settings = {
+            global = {
+              origin = "top-center";
+              # offset = "(480, 30)";
+            };
+          };
+        };
         services.hyprpolkitagent.enable = true;
 
         wayland.windowManager.hyprland = {
