@@ -14,6 +14,7 @@
     ./dashboard.nix
     ./yazi.nix
     ./colorizer.nix
+    ./indent-blankline.nix
   ];
 
 
