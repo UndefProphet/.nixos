@@ -5,9 +5,10 @@
       enable = lib.mkDefault true;
       ports = [22];
       settings = {
-        PasswordAuthentication = true;
         UseDns = true;
-        # PermitRootLogin = "";
+        PasswordAuthentication = false;       # Disables password logins
+        KbdInteractiveAuthentication = false; # Disables keyboard-interactive/PAM passwords
+        PermitRootLogin = "prohibit-password";# Prevents root login with passwords
       };
     };
   };
