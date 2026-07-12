@@ -32,12 +32,12 @@
       nemo # File manager (Cinnamon)
       file-roller # Archive manager
       gnome-disk-utility # Required for disk management + Nemo integration
-      
+
       ### --- Temporary ---
       networkmanagerapplet
       blueman
       pasystray
-      
+
       ouch-rar # TODO: move this to yazi or terminal
     ];
   };
