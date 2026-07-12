@@ -22,13 +22,18 @@
               config_file = config.programs.starship.configPath;
             };
           };
-          
+
           full-border = {
             package = full-border;
             setup = true;
             settings = {
               type = lib.mkLuaInline "ui.Border.PLAIN";
             };
+          };
+
+          ouch = {
+            package = ouch;
+            setup = false;
           };
         };
 
