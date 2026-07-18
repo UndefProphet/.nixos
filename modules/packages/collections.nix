@@ -10,6 +10,7 @@
       opencode
       zathura
       discord
+      ddcutil
     ];
 
     users.users."${username}".packages = with pkgs; [
@@ -18,7 +19,6 @@
       libnotify # Notification library
       pciutils # PCI device tools (`lspci`)
       usbutils # USB device tools (`lsusb`)
-      ddcutil # Monitor control (DDC/CI)
       wakeonlan # Send WoL packets
       dmidecode # Hardware information (DMI/SMBIOS)
       memtester # Memory testing utility
