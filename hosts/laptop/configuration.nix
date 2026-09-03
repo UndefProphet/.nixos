@@ -36,14 +36,6 @@
         # default
         laptop
         common
-        self.diskoConfigurations.default
-        {
-          _module.args = {
-            inherit nixos;
-            inherit home;
-            inherit swapSize;
-          };
-        }
         wireless
       ];
     });

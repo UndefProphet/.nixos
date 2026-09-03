@@ -11,12 +11,12 @@ inputs,
     ref = "master";
   };
 
-  flake.modules.nixos.laptop= {
+  flake.modules.nixos.laptop = {
     # ...
     # os,
     # home ? null,
     # swapSize,
-    # ...
+    ...
     }: {
       imports = [inputs.disko.nixosModules.disko];
       disko.devices = {
@@ -25,7 +25,7 @@ inputs,
             main = {
               type = "disk";
               # device = os;
-              device = "/dev/disk/by-id/";
+              device = "/dev/disk/by-id/nvme-SAMSUNG_MZVL2512HCJQ-00BL7_S64KNX0T731222";
               content = {
                 type = "gpt";
                 partitions = {
