@@ -90,43 +90,45 @@
           |> map (remKey: "tack rm ${remKey}")
           |> lib.concatLines;
       in
+      let
+        tackWrite = pkgs.writeShellApplication {
+          name = "tack-write";
+          derivationArgs = {
+            allowSubstitutes = false;
+            preferLocalBuild = true;
+          };
+          runtimeInputs = [
+            pkgs.delta
+            inputs'.tack.packages.tack
+          ];
+          text = # bash
+            ''
+              export TACK_DIR=./inputs/
+
+              if [[ ! -f inputs/pins.toml ]]; then
+                echo "Error: file not found: inputs/pins.toml" >&2
+                exit 1
+              fi
+
+              ${lib.optionalString (prevPins != tackConfig) ''
+                newPinsToml="${tackConfig |> tomlFormat "pins.toml"}"
+                delta --dark --side-by-side --line-numbers --diff-so-fancy inputs/pins.toml "$newPinsToml" || true
+
+                ${lib.optionalString (removeInputs != "") removeInputs}
+
+                install -m 644 -D -T "$newPinsToml" inputs/pins.toml
+                echo "wrote inputs/pins.toml"
+              ''}
+              # ${lib.optionalString (updateInputs != "") "tack update ${updateInputs}"}
+            '';
+        };
+      in
       {
-        apps.tack-rebuild = {
+        packages.tack-write = tackWrite;
+        apps.tack-write = {
           type = "app";
           meta.description = "Sync tack pins on input changes, can pass switch/boot/test arguments";
-          program = lib.getExe (
-            pkgs.writeShellApplication {
-              name = "tack-write";
-              derivationArgs = {
-                allowSubstitutes = false;
-                preferLocalBuild = true;
-              };
-              runtimeInputs = [
-                pkgs.delta
-                inputs'.tack.packages.tack
-              ];
-              text = # bash
-                ''
-                  export TACK_DIR=./inputs/
-
-                  if [[ ! -f inputs/pins.toml ]]; then
-                    echo "Error: file not found: inputs/pins.toml" >&2
-                    exit 1
-                  fi
-
-                  ${lib.optionalString (prevPins != tackConfig) ''
-                    newPinsToml="${tackConfig |> tomlFormat "pins.toml"}"
-                    delta --dark --side-by-side --line-numbers --diff-so-fancy inputs/pins.toml "$newPinsToml" || true
-
-                    ${lib.optionalString (removeInputs != "") removeInputs}
-
-                    install -m 644 -D -T "$newPinsToml" inputs/pins.toml
-                    echo "wrote inputs/pins.toml"
-                  ''}
-                  # ${lib.optionalString (updateInputs != "") "tack update ${updateInputs}"}
-                '';
-            }
-          );
+          program = lib.getExe tackWrite;
         };
       };
   };

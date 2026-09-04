@@ -1,9 +1,10 @@
-{
+{ self, ... }: {
   perSystem =
     {
       pkgs,
       lib,
       inputs',
+      system,
       ...
     }:
     {
@@ -16,9 +17,12 @@
           nil
           sops
           inputs'.tack.packages.default
+          self.packages.${system}.tack-write
         ];
 
-        shellHook = "";
+        shellHook = ''
+          export TACK_DIR=./inputs/
+        '';
       };
     };
 }
