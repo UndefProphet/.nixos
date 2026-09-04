@@ -4,12 +4,7 @@ inputs,
 }: {
   # https://github.com/nix-community/disko
   # Disc partitioning and declaration
-  flake-file.inputs.disko = {
-    type = "github";
-    owner = "nix-community";
-    repo = "disko";
-    ref = "master";
-  };
+  tack.inputs.disko= "gh:nix-community/disko?ref=master";
 
   flake.modules.nixos.laptop = {
     # ...

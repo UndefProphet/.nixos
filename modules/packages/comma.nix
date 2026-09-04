@@ -1,13 +1,7 @@
 {inputs, ...}: {
   # https://github.com/nix-community/nix-index
   # A files database for nixpkgs
-  flake-file.inputs.nix-index-database = {
-    type = "github";
-    owner = "nix-community";
-    repo = "nix-index-database";
-    ref = "main";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  tack.inputs.nix-index-database = "gh:nix-community/nix-index-database?ref=main";
 
   flake.modules.nixos.comma= {
     hm = {

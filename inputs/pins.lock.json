@@ -15,14 +15,6 @@
     "narHash": "sha256-RxWs5ND31KzTG7wvMM+PMfUjyNpmIEr999lqNARaM5o=",
     "lastModified": 1781152676
   },
-  "flake-file": {
-    "type": "github",
-    "owner": "vic",
-    "repo": "flake-file",
-    "rev": "c460df7fe65ac759989daad04f303fb427406e56",
-    "narHash": "sha256-j4yjVCCguq6s/SIZ2eh2Ll5Z9cJh7VOkIIFNo2PXRd0=",
-    "lastModified": 1788209062
-  },
   "flake-parts": {
     "type": "github",
     "owner": "hercules-ci",
@@ -102,6 +94,14 @@
     "rev": "2759f02d6bb7d1b5bcf4ae99038ab54148f91698",
     "narHash": "sha256-yd7gLFMW3tDMFsaX+yBVWys2Aux7l4PLUfkwt5fcPCo=",
     "lastModified": 1787390698
+  },
+  "nixos-credentials": {
+    "type": "git",
+    "url": "ssh://git@github.com/UndefProphet/.nixos.credentials",
+    "ref": "HEAD",
+    "rev": "0b09504dec26c7e38f6bfac3d64269dd50198a6d",
+    "narHash": "sha256-uJadYiEHqmdrKCkB7PTR1wpIOHQWUvNDExHpBnpUhNw=",
+    "lastModified": 1778297186
   },
   "nixpkgs": {
     "type": "github",

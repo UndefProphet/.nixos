@@ -1,9 +1,5 @@
 {inputs, ...}:{
-  flake-file.inputs.base16 = {
-    type = "github";
-    owner = "SenchoPens";
-    repo = "base16.nix";
-  };
+  tack.inputs.base16 = "gh:SenchoPens/base16.nix";
 
 
 

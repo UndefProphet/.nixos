@@ -1,21 +1,14 @@
 {inputs, ...}: {
-  # https://github.com/sodiboo/niri-flake
-  # A flake which contains home manager module.
-  flake-file.inputs = {
-    niri-flake = {
-      type = "github";
-      owner = "myume";
-      repo = "niri-flake";
-      ref = "blur";
-    };
 
-    # https://github.com/niri-wm/niri
-    # A scrollable-tiling Wayland compositor
-    niri = {
-      url = "github:niri-wm/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
+  tack.inputs = {
+      # https://github.com/sodiboo/niri-flake
+      # A flake which contains home manager module.
+      niri-flake = "gh:myume/niri-flake?ref=blur";
+
+      # https://github.com/niri-wm/niri
+      # A scrollable-tiling Wayland compositor
+      niri = "gh:niri-wm/niri";
     };
-  };
 
   flake.modules.nixos.niri = {
     inputs',

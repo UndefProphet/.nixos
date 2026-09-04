@@ -1,20 +1,12 @@
 {inputs, ...}: {
-  flake-file.inputs = {
+  tack.inputs = {
     # https://github.com/hercules-ci/flake-parts
     # flake-parts provides the options that represent standard flake attributes and establishes a way of working with system.
-    flake-parts = {
-      type = "github";
-      owner = "hercules-ci";
-      repo = "flake-parts";
-    };
+    flake-parts = "gh:hercules/flake-parts?ref=main";
 
     # https://github.com/denful/import-tree
     # Recursively import Nix modules from a directory, with a simple, extensible API.
-    import-tree = {
-      type = "github";
-      owner = "vic";
-      repo = "import-tree";
-    };
+    import-tree = "gh:denful/import-tree?ref=main";
   };
 
   imports = [inputs.flake-parts.flakeModules.modules];
@@ -27,6 +19,6 @@
     "x86_64-linux"
   ];
   perSystem = {pkgs, ...}: {
-    formatter = pkgs.alejandra;
+    formatter = pkgs.treefmt;
   };
 }

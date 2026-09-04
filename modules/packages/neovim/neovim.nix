@@ -4,7 +4,7 @@
 in {
   # https://github.com/nix-community/nixvim
   # Neovim configuration
-  flake-file.inputs.nixvim.url = "github:nix-community/nixvim";
+  tack.inputs.nixvim = "gh:nix-community/nixvim";
 
   flake = {
     nixvimModule = import configPath;

@@ -1,11 +1,6 @@
 {inputs, ...}:{
 
-  flake-file.inputs.nixos-core = {
-    type = "github";
-    owner = "manic-systems";
-    repo = "nixos-core";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  tack.inputs.nixos-core = "gh:manic-systems/nixos-core";
 
   flake.modules.nixos.rs-core = {
     imports = [ inputs.nixos-core.nixosModules.default ];

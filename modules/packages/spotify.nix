@@ -1,13 +1,7 @@
 {inputs, ...}: {
   # https://github.com/Gerg-L/spicetify-nix
   # A themebale spotify client
-  flake-file.inputs.spicetify-nix = {
-    type = "github";
-    owner = "Gerg-L";
-    repo = "spicetify-nix";
-    ref = "master";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  tack.inputs.spicetify-nix = "gh:Gerg-L/spicetify-nix?ref=master";
 
   flake.modules.nixos.spotify = {pkgs, ...}: {
     hm = {

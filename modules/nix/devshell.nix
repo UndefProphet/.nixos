@@ -2,6 +2,7 @@
   perSystem = {
     pkgs,
     lib,
+    inputs',
     ...
   }: {
     devShells.default = pkgs.mkShell {
@@ -9,12 +10,10 @@
         nixd
         nil
         sops
+        inputs'.tack.packages.default
       ];
 
       shellHook = ''
-        alias sops="sops --config ./modules/secrets/.sops.yaml"
-        alias sops-master="sops secrets/master.yaml"
-        alias generate-flake="nix run .#write-flake";
       '';
     };
   };

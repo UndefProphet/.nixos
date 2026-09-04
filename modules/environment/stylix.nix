@@ -1,12 +1,7 @@
 {inputs, ...}: {
   # https://github.com/nix-community/stylix
   # Stylix is a theming framework for NixOS, Home Manager, nix-darwin, and Nix-on-Droid.
-  flake-file.inputs.stylix = {
-    type = "github";
-    owner = "nix-community";
-    repo = "stylix";
-    ref = "master";
-  };
+  tack.inputs.stylix = "gh:nix-community/stylix?ref=master";
 
   flake.modules.nixos.stylix = {pkgs, ...}: let
     handofevil = with pkgs;

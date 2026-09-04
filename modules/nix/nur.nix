@@ -1,8 +1,5 @@
 {inputs,...}:{
-  flake-file.inputs.nur = {
-    url = "github:nix-community/NUR";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  tack.inputs.nur = "gh:nix-community/NUR?ref=master";
 
   flake.modules.nixos.nur = {
     imports = [ inputs.nur.modules.nixos.default ];

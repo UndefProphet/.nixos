@@ -1,22 +1,8 @@
 {
 
-  flake-file.inputs = {
-
-    hyprland = {
-      type = "github";
-      owner = "hyprwm";
-      repo = "Hyprland";
-      ref = "main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # hyprland-scroll-overview = {
-    #   type = "github";
-    #   owner = "yayuuu";
-    #   repo = "hyprland-scroll-overview";
-    #   ref = "main";
-    #   # inputs.nixpkgs.follows = "nixpkgs";
-    # };
+  tack.inputs = {
+    hyprland = "gh:hyprwm/Hyprland?ref=main";
+    # hyprland = "gh:yayuuu/hyprland-scroll-overview?ref=main";
   };
 
   flake.modules.nixos.hyprland-tty = {lib, config, ...}:{

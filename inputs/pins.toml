@@ -1,89 +1,66 @@
-# tack pins
-# edit by hand or with tack add / rm / alias
-# nix reads pins.lock.json
-# this file drives tack update
-
-# shorturl schemes
-# scheme rest expands rest into {path}
-[shorturls]
-# gh = "github:{path}"
-
-# all_follow maps input names to the top-level pin they follow
-# opt out per-input with exclude_follow
 [all_follow]
-# nixpkgs = "nixpkgs"
-# nixpkgs = ["nixpkgs-stable", "nixpkgs-unstable"]
-
-# inputs.<name> fields
-#   url             required, shorturl ok, ?rev=<sha> pins an exact commit
-#   type            flake (default), fetch, or fixed
-#   flake           legacy false means type = "fetch"
-#   follows         { child = "pin" } override map
-#   exclude_follow  all_follow names to skip
-#   dir             subdir holding flake.nix
-#   submodules      fetch git submodules
-#   unpack          fixed-only tarball or file
-[inputs]
-
-[inputs.flake-parts]
-url = "github:hercules-ci/flake-parts"
+nixpkgs = "nixpkgs"
 
 [inputs.base16]
-url = "github:SenchoPens/base16.nix"
+url = "gh:SenchoPens/base16.nix"
 
 [inputs.disko]
-url = "github:nix-community/disko?ref=master"
+url = "gh:nix-community/disko?ref=master"
 
-[inputs.flake-file]
-url = "github:vic/flake-file"
+[inputs.flake-parts]
+url = "gh:hercules/flake-parts?ref=main"
 
 [inputs.glide-browser]
-url = "github:glide-browser/glide.nix"
+url = "gh:glide-browser/glide.nix"
 
 [inputs.home-manager]
-url = "github:nix-community/home-manager?ref=master"
+url = "gh:nix-community/home-manager?ref=master"
 
 [inputs.hyprland]
-url = "github:hyprwm/Hyprland?ref=main"
+url = "gh:hyprwm/Hyprland?ref=main"
 
 [inputs.import-tree]
-url = "github:vic/import-tree"
+url = "gh:denful/import-tree?ref=main"
 
 [inputs.niri]
-url = "github:niri-wm/niri"
+url = "gh:niri-wm/niri"
 
 [inputs.niri-flake]
-url = "github:myume/niri-flake?ref=blur"
+url = "gh:myume/niri-flake?ref=blur"
 
 [inputs.nix-index-database]
-url = "github:nix-community/nix-index-database?ref=main"
+url = "gh:nix-community/nix-index-database?ref=main"
 
 [inputs.nixcord]
-url = "github:FlameFlag/nixcord?ref=main"
+url = "gh:FlameFlag/nixcord?ref=main"
 
 [inputs.nixos-core]
-url = "github:manic-systems/nixos-core"
+url = "gh:manic-systems/nixos-core"
+
+[inputs.nixos-credentials]
+type = "fetch"
+url = "git+ssh://git@github.com/UndefProphet/.nixos.credentials"
 
 [inputs.nixpkgs]
-url = "github:nixos/nixpkgs?ref=nixos-unstable"
+url = "gh:nixos/nixpkgs?ref=nixos-unstable"
 
 [inputs.nixvim]
-url = "github:nix-community/nixvim"
+url = "gh:nix-community/nixvim"
 
 [inputs.nur]
-url = "github:nix-community/NUR"
+url = "gh:nix-community/NUR?ref=master"
 
 [inputs.sops-nix]
-url = "github:Mic92/sops-nix?ref=master"
+url = "gh:Mic92/sops-nix?ref=master"
 
 [inputs.spicetify-nix]
-url = "github:Gerg-L/spicetify-nix?ref=master"
+url = "gh:Gerg-L/spicetify-nix?ref=master"
 
 [inputs.stylix]
-url = "github:nix-community/stylix?ref=master"
+url = "gh:nix-community/stylix?ref=master"
 
 [inputs.tack]
-url = "github:manic-systems/tack?ref=main"
+url = "gh:manic-systems/tack"
 
-[tack]
-recomposable = true
+[shorturls]
+gh = "github:{path}"

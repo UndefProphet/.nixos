@@ -1,20 +1,11 @@
 {inputs, ...}: {
-  flake-file.inputs = {
+  tack.inputs = {
     # You may not have these!
-    nixos-credentials = {
-      url = "git+ssh://git@github.com/UndefProphet/.nixos.credentials";
-      flake = false;
-    };
+    fetch.nixos-credentials = "git+ssh://git@github.com/UndefProphet/.nixos.credentials";
 
     # https://github.com/Mic92/sops-nix
     # Atomic, declarative, and reproducible secret provisioning for NixOS based on sops.
-    sops-nix = {
-      type = "github";
-      owner = "Mic92";
-      repo = "sops-nix";
-      ref = "master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    sops-nix = "gh:Mic92/sops-nix?ref=master";
   };
 
   flake.modules.nixos.secrets = {

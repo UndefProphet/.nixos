@@ -1,12 +1,7 @@
 {
   # Nix packages
   # A collection of over 100,000 software packages that can be installed with the Nix.
-  flake-file.inputs.nixpkgs = {
-    type = "github";
-    owner = "nixos";
-    repo = "nixpkgs";
-    ref = "nixos-unstable";
-  };
+  tack.inputs.nixpkgs = "gh:nixos/nixpkgs?ref=nixos-unstable";
 
   flake.modules.nixos.nix = {stateVersion, ...}: {
     # Nix Config

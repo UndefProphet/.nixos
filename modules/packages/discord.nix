@@ -1,13 +1,7 @@
 {inputs, ...}: {
   # https://github.com/not-a-cowfr/equinix
   # Discord client with modified vencord plugins.
-  flake-file.inputs.nixcord = {
-    type = "github";
-    owner = "FlameFlag";
-    repo = "nixcord";
-    ref = "main";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  tack.inputs.nixcord = "gh:FlameFlag/nixcord?ref=main";
 
   flake.modules.nixos.discord = {
     home-manager.sharedModules = [inputs.nixcord.homeModules.nixcord];
