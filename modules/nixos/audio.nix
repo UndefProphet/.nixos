@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.audio = {pkgs, ...}: {
+  flake.modules.nixos.audio = { pkgs, ... }: {
     services.pulseaudio.enable = false;
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;

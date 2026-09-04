@@ -26,7 +26,9 @@
     background = "dark";
     signcolumn = "yes";
     cmdheight = 0;
-    fillchars = {eob = " ";};
+    fillchars = {
+      eob = " ";
+    };
 
     # Search settings
     ignorecase = true;

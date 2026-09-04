@@ -1,6 +1,6 @@
-{self, ...}:{
-  flake.modules.nixos.iso = {pkgs, ...}:{
-    imports = [];
+{ self, ... }: {
+  flake.modules.nixos.iso = { pkgs, ... }: {
+    imports = [ ];
 
     isoImage.squashfsCompression = "lz4";
 
@@ -28,12 +28,12 @@
     services.openssh = {
       enable = true;
       settings = {
-        PasswordAuthentication = false;       # Disables password logins
+        PasswordAuthentication = false; # Disables password logins
         KbdInteractiveAuthentication = false; # Disables keyboard-interactive/PAM passwords
-        PermitRootLogin = "prohibit-password";# Prevents root login with passwords
+        PermitRootLogin = "prohibit-password"; # Prevents root login with passwords
       };
     };
-    users.users.root= {
+    users.users.root = {
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMogwr9yqxa3C2pzi8uUmTFRTnXVW5bNdK8h8mm08oWI boink"
       ];

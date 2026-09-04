@@ -5,41 +5,43 @@
     # hyprland = "gh:yayuuu/hyprland-scroll-overview?ref=main";
   };
 
-  flake.modules.nixos.hyprland-tty = {lib, config, ...}:{
+  flake.modules.nixos.hyprland-tty = { lib, config, ... }: {
     environment.loginShellInit =
       let
         session =
           # bash
-          if config.programs.hyprland.withUWSM then 
+          if config.programs.hyprland.withUWSM then
             "exec uwsm start hyprland-uwsm.desktop"
           else
             lib.getExe config.programs.hyprland.package;
       in
-        lib.mkOrder 0 /* bash */ ''
-  # [[ $- != *i* ]] && return
-  # interactive-only commands here
-    # case $- in
-    #   *i*) ;;
-    #   *) return ;;
-    # esac
+      lib.mkOrder 0 /* bash */ ''
+        # [[ $- != *i* ]] && return
+        # interactive-only commands here
+          # case $- in
+          #   *i*) ;;
+          #   *) return ;;
+          # esac
 
-    # Auto start wayland session on tty1
-    if [[ $(tty) == '/dev/tty1' ]]; then
-      ${session}
-    else
-      echo "failed"
-    fi
-    '';
+          # Auto start wayland session on tty1
+          if [[ $(tty) == '/dev/tty1' ]]; then
+            ${session}
+          else
+            echo "failed"
+          fi
+      '';
   };
 
-  flake.modules.nixos.hyprland = {
-    pkgs,
-    lib,
-    username,
-    config,
-    inputs',
-    ...
-    }:{
+  flake.modules.nixos.hyprland =
+    {
+      pkgs,
+      lib,
+      username,
+      config,
+      inputs',
+      ...
+    }:
+    {
 
       imports = [
         ./_filechooser/yazi.nix
@@ -53,7 +55,6 @@
         package = inputs'.hyprland.packages.hyprland;
         withUWSM = true;
       };
-
 
       users.users."${username}".packages = with pkgs; [
         kanshi

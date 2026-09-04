@@ -1,10 +1,10 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   # https://github.com/not-a-cowfr/equinix
   # Discord client with modified vencord plugins.
   tack.inputs.nixcord = "gh:FlameFlag/nixcord?ref=main";
 
   flake.modules.nixos.discord = {
-    home-manager.sharedModules = [inputs.nixcord.homeModules.nixcord];
+    home-manager.sharedModules = [ inputs.nixcord.homeModules.nixcord ];
     hm = {
       programs.abaddon.enable = true;
       programs.nixcord = {
@@ -17,7 +17,7 @@
           # equicord.package = pkgs.equibop;
         };
 
-        userPlugins = {};
+        userPlugins = { };
         #
         config = {
           transparent = true;
@@ -40,7 +40,7 @@
             };
           };
         };
-        extraConfig = {};
+        extraConfig = { };
       };
     };
   };

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.virtualisation = { pkgs, username, ...}:{
+  flake.modules.nixos.virtualisation = { pkgs, username, ... }: {
 
     programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;

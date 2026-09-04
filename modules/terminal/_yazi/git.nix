@@ -1,4 +1,4 @@
-{pkgs,...}:{
+{ pkgs, ... }: {
 
   hm = {
     programs.yazi = {
@@ -21,13 +21,13 @@
       settings = {
         plugin.prepend_fetchers = [
           {
-            id    = "git";
+            id = "git";
             group = "git";
             url = "*";
             run = "git";
           }
           {
-            id    = "git";
+            id = "git";
             group = "git";
             url = "*/";
             run = "git";
@@ -37,12 +37,12 @@
 
       theme = {
         git = {
-          unknown_sign  = "?";
+          unknown_sign = "?";
           modified_sign = "M";
-          added_sign    = "A";
-          deleted_sign  = "D";
-          untracked_sign= "U";
-          clean_sign    = " ";
+          added_sign = "A";
+          deleted_sign = "D";
+          untracked_sign = "U";
+          clean_sign = " ";
         };
       };
 

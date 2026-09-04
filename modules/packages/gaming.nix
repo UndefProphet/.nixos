@@ -1,8 +1,8 @@
 {
   flake.modules.nixos.gaming = {
-      programs.steam = {
-        enable = true;
-        protontricks.enable = true;
-      };
+    programs.steam = {
+      enable = true;
+      protontricks.enable = true;
+    };
   };
 }

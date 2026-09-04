@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ lib, ... }: {
   # Import all your configuration modules here
   imports = [
     ./options.nix
@@ -19,21 +19,20 @@
 
   plugins.web-devicons.enable = lib.mkDefault true;
 
-
   autoCmd = [
     {
       desc = "Change directory to the one provided.";
       event = "VimEnter";
       callback = {
         __raw = # lua
-        ''
-        function()
-          local arg = vim.fn.argv(0)
-          if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
-            vim.cmd("cd " .. vim.fn.fnameescape(arg))
-          end
-        end
-        '';
+          ''
+            function()
+              local arg = vim.fn.argv(0)
+              if arg ~= "" and vim.fn.isdirectory(arg) == 1 then
+                vim.cmd("cd " .. vim.fn.fnameescape(arg))
+              end
+            end
+          '';
       };
     }
   ];

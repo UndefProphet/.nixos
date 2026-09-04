@@ -2,7 +2,7 @@
   flake.modules.nixos.yt-dlp = {
     hm.programs.yt-dlp = {
       enable = true;
-      settings = {};
+      settings = { };
       extraConfig = ''
         # Subtitles
         --write-auto-subs

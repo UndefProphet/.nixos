@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.obs = {pkgs, ...}: {
+  flake.modules.nixos.obs = { pkgs, ... }: {
     programs.obs-studio = {
       enable = true;
       enableVirtualCamera = true;
@@ -13,8 +13,8 @@
 
     networking.firewall = {
       # Teleport plugin
-      allowedUDPPorts = [5678];
-      allowedTCPPorts = [5678];
+      allowedUDPPorts = [ 5678 ];
+      allowedTCPPorts = [ 5678 ];
     };
   };
 }

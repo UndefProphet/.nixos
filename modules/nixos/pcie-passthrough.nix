@@ -1,25 +1,26 @@
 {
-  flake.modules.nixos.gpu-passthrough = {
-    ids,
-    ...
-    }:{
+  flake.modules.nixos.gpu-passthrough =
+    {
+      ids,
+      ...
+    }:
+    {
 
-    boot.initrd.kernelModules = [
-      "vfio_pci"
-      "vfio"
-      "vfio_iommu_type1"
+      boot.initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
 
-      "amdgpu"
+        "amdgpu"
 
-      # "radeon"
-      # "nouveau"
-    ];
+        # "radeon"
+        # "nouveau"
+      ];
 
+      boot.kernelParams = [
+        "amd_iommu=on"
+        "vfio-pci.ids=${builtins.concatStringsSep "," ids}"
+      ];
 
-    boot.kernelParams = [
-      "amd_iommu=on"
-      "vfio-pci.ids=${builtins.concatStringsSep "," ids}"
-    ];
-
-  };
+    };
 }

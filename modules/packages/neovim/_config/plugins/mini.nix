@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ lib, ... }: {
   plugins = {
     mini-ai = {
       enable = true;

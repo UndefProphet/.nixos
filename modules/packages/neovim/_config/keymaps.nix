@@ -88,7 +88,10 @@
 
     # --- Commenting Lines ---
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<C-/>";
       action = "gcc";
       options = {

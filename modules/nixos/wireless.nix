@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.wireless = {username, pkgs, ...}:{
+  flake.modules.nixos.wireless = { username, pkgs, ... }: {
 
     users.users."${username}".packages = with pkgs; [
       impala

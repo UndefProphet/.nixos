@@ -3,9 +3,9 @@
   # A collection of over 100,000 software packages that can be installed with the Nix.
   tack.inputs.nixpkgs = "gh:nixos/nixpkgs?ref=nixos-unstable";
 
-  flake.modules.nixos.nix = {stateVersion, ...}: {
+  flake.modules.nixos.nix = { stateVersion, ... }: {
     # Nix Config
-    system = {inherit stateVersion;};
+    system = { inherit stateVersion; };
     nix = {
       optimise.automatic = true;
       settings = {
@@ -21,7 +21,7 @@
     };
 
     # Packages
-   nixpkgs.config.allowBroken = false;
+    nixpkgs.config.allowBroken = false;
     nixpkgs.config.allowUnfree = true;
     environment.variables = {
       NIXPKGS_ALLOW_UNFREE = 1;

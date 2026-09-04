@@ -1,9 +1,9 @@
 {
-  flake.modules.nixos.ddcutil = {username, pkgs, ...}:{
+  flake.modules.nixos.ddcutil = { username, pkgs, ... }: {
     hardware.i2c.enable = true;
     users.users."${username}" = {
-      packages = with pkgs; [ddcutil];
-      extraGroups = ["i2c"];
+      packages = with pkgs; [ ddcutil ];
+      extraGroups = [ "i2c" ];
     };
   };
 }

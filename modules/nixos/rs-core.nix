@@ -1,4 +1,4 @@
-{inputs, ...}:{
+{ inputs, ... }: {
 
   tack.inputs.nixos-core = "gh:manic-systems/nixos-core";
 

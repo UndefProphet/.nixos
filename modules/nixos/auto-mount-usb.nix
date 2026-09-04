@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.auto-mount-usb = {username, ...}:{
+  flake.modules.nixos.auto-mount-usb = { username, ... }: {
 
     services.gvfs.enable = true;
 
@@ -15,7 +15,7 @@
           };
         };
       };
-      
+
       systemd.user.tmpfiles.rules = [
         "L+ /home/${username}/disks - - - - /run/media/${username}"
       ];

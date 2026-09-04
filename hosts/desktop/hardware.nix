@@ -1,8 +1,9 @@
 {
   lib,
   ...
-}: {
-  flake.modules.nixos.desktop = {modulesPath, config, ...}: {
+}:
+{
+  flake.modules.nixos.desktop = { modulesPath, config, ... }: {
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
@@ -12,8 +13,8 @@
       "thunderbolt"
       "sdhci_pci"
     ];
-    boot.initrd.kernelModules = [];
-    boot.kernelModules = ["kvm-amd"];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-amd" ];
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.enableRedistributableFirmware = true;
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

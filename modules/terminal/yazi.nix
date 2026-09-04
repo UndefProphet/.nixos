@@ -1,12 +1,12 @@
-{lib, ...}: {
+{ lib, ... }: {
 
-  flake.modules.nixos.terminal = {pkgs, ...}: {
+  flake.modules.nixos.terminal = { pkgs, ... }: {
     imports = [
-      ./_yazi/git.nix 
+      ./_yazi/git.nix
       ./_yazi/mux.nix
     ];
 
-    hm = {config,...}:{
+    hm = { config, ... }: {
       programs.yazi = {
         enable = true;
         shellWrapperName = "Y";
@@ -48,11 +48,13 @@
             linemode = "size_and_mtime";
           };
 
-          plugin.prepend_previewers = let
-            bat = "${lib.getExe pkgs.bat} -p --color=always --theme base16";
-            qemu-img = lib.getExe' pkgs.qemu-utils "qemu-img";
-          in
-            with pkgs; [
+          plugin.prepend_previewers =
+            let
+              bat = "${lib.getExe pkgs.bat} -p --color=always --theme base16";
+              qemu-img = lib.getExe' pkgs.qemu-utils "qemu-img";
+            in
+            with pkgs;
+            [
               {
                 url = "*.md";
                 run = ''piper -- CLICOLOR_FORCE=1 ${lib.getExe glow} -w=$w -s=dark -- "$1"'';
@@ -122,13 +124,13 @@
               local size = self._file:size()
               return string.format("%s %s", size and ya.readable_size(size) or "-", time)
             end
-            '';
+          '';
 
         keymap = {
           mgr.prepend_keymap = [
             {
-              on = ["T"];
-              run  = "plugin toggle-pane min-parent";
+              on = [ "T" ];
+              run = "plugin toggle-pane min-parent";
               desc = "Show or hide ...";
             }
           ];

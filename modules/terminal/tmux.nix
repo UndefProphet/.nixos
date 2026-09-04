@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.terminal = {pkgs, ...}: {
+  flake.modules.nixos.terminal = { pkgs, ... }: {
     hm.programs.tmux = {
       enable = true;
       terminal = "screen";
@@ -10,22 +10,18 @@
       baseIndex = 1;
       clock24 = true;
 
-      extraConfig =
-        /*
-        conf
-        */
-        ''
-          set -g status-keys vi
+      extraConfig = /* conf */ ''
+        set -g status-keys vi
 
-          set -s escape-time       500
-          set -g history-limit     2000
+        set -s escape-time       500
+        set -g history-limit     2000
 
-          set -g pane-base-index 1
+        set -g pane-base-index 1
 
-          # unbind-key -a # Unbind all keys
-          set -g prefix C-Space
-          bind C-space send-prefix
-        '';
+        # unbind-key -a # Unbind all keys
+        set -g prefix C-Space
+        bind C-space send-prefix
+      '';
     };
   };
 }

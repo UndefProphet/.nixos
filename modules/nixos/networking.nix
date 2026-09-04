@@ -1,15 +1,17 @@
 {
-  flake.modules.nixos.networking = {
-    lib,
-    hostname,
-    ...
-  }: {
-    networking = {
-      hostName = hostname;
-      firewall.enable = true;
-      useDHCP = lib.mkForce true;
+  flake.modules.nixos.networking =
+    {
+      lib,
+      hostname,
+      ...
+    }:
+    {
+      networking = {
+        hostName = hostname;
+        firewall.enable = true;
+        useDHCP = lib.mkForce true;
 
-      networkmanager.enable = true;
+        networkmanager.enable = true;
+      };
     };
-  };
 }

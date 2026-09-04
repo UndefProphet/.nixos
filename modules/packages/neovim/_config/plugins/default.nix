@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./colorscheme.nix
     ./bufferline.nix
@@ -16,7 +17,6 @@
     ./colorizer.nix
     ./indent-blankline.nix
   ];
-
 
   # plugins.snacks = {
   #   enable = true;
@@ -37,42 +37,51 @@
 
   plugins.lsp = {
     enable = true;
-    servers = builtins.mapAttrs (_name: opts:
-      {
-        enable = true;
-        package = null;
-      }
-      // opts) {
-      nixd = {package = pkgs.nixd;};
-      nil_ls = {package = pkgs.nil;};
+    servers =
+      builtins.mapAttrs
+        (
+          _name: opts:
+          {
+            enable = true;
+            package = null;
+          }
+          // opts
+        )
+        {
+          nixd = {
+            package = pkgs.nixd;
+          };
+          nil_ls = {
+            package = pkgs.nil;
+          };
 
-      # Web
-      ts_ls = {};
-      html = {};
-      cssls = {};
-      jsonls = {};
+          # Web
+          ts_ls = { };
+          html = { };
+          cssls = { };
+          jsonls = { };
 
-      #
-      pyright = {};
-      gopls = {};
-      lua_ls = {};
-      rust_analyzer = {
-        installRustc = true;
-        installCargo = true;
-      };
-      omnisharp = {};
+          #
+          pyright = { };
+          gopls = { };
+          lua_ls = { };
+          rust_analyzer = {
+            installRustc = true;
+            installCargo = true;
+          };
+          omnisharp = { };
 
-      # Other
-      veryl_ls = {};
+          # Other
+          veryl_ls = { };
 
-      # Config / Infra
-      yamlls = {};
-      bashls = {};
-      dockerls = {};
+          # Config / Infra
+          yamlls = { };
+          bashls = { };
+          dockerls = { };
 
-      # UI
-      qmlls = {}; # QT/qml
-    };
+          # UI
+          qmlls = { }; # QT/qml
+        };
   };
 
   filetype.extension."veryl" = "veryl";
@@ -150,11 +159,11 @@
       };
 
       sources = [
-        {name = "nvim_lsp";}
-        {name = "luasnip";}
-        {name = "path";}
-        {name = "buffer";}
-        {name = "nvim_lsp_signature_help";}
+        { name = "nvim_lsp"; }
+        { name = "luasnip"; }
+        { name = "path"; }
+        { name = "buffer"; }
+        { name = "nvim_lsp_signature_help"; }
       ];
     };
   };

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.grub= {
+  flake.modules.nixos.grub = {
 
     boot.loader = {
       grub = {
