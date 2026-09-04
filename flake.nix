@@ -20,6 +20,7 @@
         inputs.import-tree [
           ./hosts # Hardware based configurations
           ./modules # Modules
+          ./hjem # Hjem modules
         ]
       );
 }

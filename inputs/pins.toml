@@ -13,6 +13,9 @@ url = "gh:hercules/flake-parts?ref=main"
 [inputs.glide-browser]
 url = "gh:glide-browser/glide.nix"
 
+[inputs.hjem]
+url = "gh:feel-co/hjem?ref=main"
+
 [inputs.home-manager]
 url = "gh:nix-community/home-manager?ref=master"
 
