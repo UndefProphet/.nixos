@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, lib, ... }: {
   tack.inputs = {
     # You may not have these!
     fetch.nixos-credentials = "git+ssh://git@github.com/UndefProphet/.nixos.credentials";
@@ -14,17 +14,30 @@
       lib,
       ...
     }:
+    let
+      cfg = config.conf.security.secrets;
+    in
     {
       imports = [
+        {
+          options.conf.security.secrets = {
+            enable = lib.mkEnableOption {
+              default = false;
+              description = "Enable sops secrets";
+            };
+          };
+        }
         inputs.sops-nix.nixosModules.sops
       ]
       ++ (lib.optional (inputs ? nixos-credentials) "${inputs.nixos-credentials}/secrets.nix");
 
-      # Sops config
-      sops = {
-        defaultSopsFile = ./secrets/master.yaml;
-        defaultSopsFormat = "yaml";
-        age.keyFile = "${config.hm.home.homeDirectory}/.config/sops/age/keys.txt";
+      config = lib.mkIf cfg.enable {
+        # Sops config
+        sops = {
+          defaultSopsFile = ./secrets/master.yaml;
+          defaultSopsFormat = "yaml";
+          age.keyFile = "${config.hm.home.homeDirectory}/.config/sops/age/keys.txt";
+        };
       };
     };
 }

@@ -12,7 +12,7 @@
       networking
       avahi
       ssh
-      secrets
+      # secrets
 
       # NixOS
       stylix

@@ -4,117 +4,118 @@
   tack.inputs.stylix = "gh:nix-community/stylix?ref=master";
 
   flake.modules.nixos.stylix =
-    { pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
-      handofevil =
-        with pkgs;
-        stdenv.mkDerivation (finalAttrs: {
-          name = "hand-of-evil";
-          version = "1.2";
-
-          src = fetchTarball {
-            url = "https://github.com/Grief/hand-of-evil/releases/download/v1.2/hand-of-evil.tar.gz";
-            sha256 = "0ld10fm8vgyig4kh0yv0bimwfwr8m9fw9cw424za6hlf48cgx6dm";
-          };
-          installPhase = ''
-            mkdir -p $out/share/icons/${finalAttrs.name}
-            cp -r . $out/share/icons/${finalAttrs.name}
-          '';
-        });
+      cfg = config.conf.environment.stylix;
     in
     {
       imports = [
+        {
+          options.conf.environment.stylix = {
+            enable = lib.mkEnableOption {
+              default = false;
+              description = "Enable stylix theming";
+            };
+          };
+        }
         inputs.stylix.nixosModules.stylix
       ];
 
-      stylix = {
-        enable = true;
-        autoEnable = true;
-        polarity = "dark";
-        # base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-
-        opacity =
-          let
-            opacity = 0.85;
-          in
-          {
-            applications = opacity;
-            desktop = opacity;
-            terminal = opacity;
-            popups = opacity;
-          };
-
-        icons = {
+      config = lib.mkIf cfg.enable {
+        stylix = {
           enable = true;
-          package = pkgs.papirus-icon-theme;
-          dark = "Papirus-Dark";
-          light = "Papirus-Light"; # Dark mode seems to not be used sometimes.
-        };
+          autoEnable = true;
+          polarity = "dark";
+          # base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
+          base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
-        cursor = {
-          package = handofevil;
-          name = "hand-of-evil";
-          size = 24;
-        };
-
-        fonts = {
-          sizes =
+          opacity =
             let
-              size = 10.0;
+              opacity = 0.85;
             in
             {
-              terminal = 9.0;
-              # terminal     = size;
-              applications = size;
-              desktop = size;
-              popups = size;
+              applications = opacity;
+              desktop = opacity;
+              terminal = opacity;
+              popups = opacity;
             };
 
-          sansSerif = {
-            # name = "Source Sans Pro";
-            # package = pkgs.source-sans-pro;
-            name = "JetBrainsMonoNL Nerd Font Mono";
-            package = pkgs.nerd-fonts.jetbrains-mono;
+          icons = {
+            enable = true;
+            package = pkgs.papirus-icon-theme;
+            dark = "Papirus-Dark";
+            light = "Papirus-Light"; # Dark mode seems to not be used sometimes.
           };
 
-          serif = {
-            # name = "Source Serif Pro";
-            # package = pkgs.source-serif-pro;
-            name = "JetBrainsMonoNL Nerd Font Mono";
-            package = pkgs.nerd-fonts.jetbrains-mono;
+          # cursor = {
+          #   package = handofevil;
+          #   name = "hand-of-evil";
+          #   size = 24;
+          # };
+
+          fonts = {
+            sizes =
+              let
+                size = 10.0;
+              in
+              {
+                terminal = 9.0;
+                # terminal     = size;
+                applications = size;
+                desktop = size;
+                popups = size;
+              };
+
+            sansSerif = {
+              # name = "Source Sans Pro";
+              # package = pkgs.source-sans-pro;
+              name = "JetBrainsMonoNL Nerd Font Mono";
+              package = pkgs.nerd-fonts.jetbrains-mono;
+            };
+
+            serif = {
+              # name = "Source Serif Pro";
+              # package = pkgs.source-serif-pro;
+              name = "JetBrainsMonoNL Nerd Font Mono";
+              package = pkgs.nerd-fonts.jetbrains-mono;
+            };
+
+            monospace = {
+              name = "JetBrainsMonoNL Nerd Font Mono";
+              package = pkgs.nerd-fonts.jetbrains-mono;
+              # name = "";
+              # package = pkgs.roboto-mono
+            };
           };
 
-          monospace = {
-            name = "JetBrainsMonoNL Nerd Font Mono";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-            # name = "";
-            # package = pkgs.roboto-mono
+          targets = {
+            # hyprland.enable = false;
+
+            console.enable = true;
+            spicetify.enable = false;
           };
         };
 
-        targets = {
-          # hyprland.enable = false;
+        hm.stylix.targets = {
+          firefox = {
+            profileNames = [
+              "default"
+              "streaming"
+            ];
+            colorTheme.enable = true;
+          };
 
-          console.enable = true;
-          spicetify.enable = false;
+          zen-browser = {
+            profileNames = [ "default" ];
+          };
+
+          # yazi.enable = false;
         };
-      };
-
-      hm.stylix.targets = {
-        firefox = {
-          profileNames = [
-            "default"
-            "streaming"
-          ];
-          colorTheme.enable = true;
-        };
-
-        zen-browser = {
-          profileNames = [ "default" ];
-        };
-
-        # yazi.enable = false;
       };
     };
 }

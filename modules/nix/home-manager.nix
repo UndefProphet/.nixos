@@ -5,13 +5,25 @@
 
   flake.modules.nixos.home-manager =
     {
+      config,
       lib,
       username,
       stateVersion,
       ...
     }:
+    let
+      # cfg = config.conf.user.home-manager;
+    in
     {
       imports = [
+        # {
+        #   options.conf.user.home-manager = {
+        #     enable = lib.mkEnableOption {
+        #       default = false;
+        #       description = "Enable home-manager";
+        #     };
+        #   };
+        # }
         inputs.home-manager.nixosModules.home-manager
         (lib.mkAliasOptionModule [ "hm" ] [ "home-manager" "users" username ])
       ];

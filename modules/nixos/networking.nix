@@ -1,17 +1,34 @@
 {
   flake.modules.nixos.networking =
     {
+      config,
       lib,
       hostname,
       ...
     }:
+    let
+      cfg = config.conf.networking.networking;
+    in
     {
-      networking = {
-        hostName = hostname;
-        firewall.enable = true;
-        useDHCP = lib.mkForce true;
+      imports = [
+        {
+          options.conf.networking.networking = {
+            enable = lib.mkEnableOption {
+              default = false;
+              description = "Enable networking configuration";
+            };
+          };
+        }
+      ];
 
-        networkmanager.enable = true;
+      config = lib.mkIf cfg.enable {
+        networking = {
+          hostName = hostname;
+          firewall.enable = true;
+          useDHCP = lib.mkForce true;
+
+          networkmanager.enable = true;
+        };
       };
     };
 }

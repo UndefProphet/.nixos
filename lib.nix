@@ -6,7 +6,16 @@
 }:
 let
   unwrap = module: builtins.head (module { }).imports;
-  nixos-modules = lib.attrValues self.modules.nixos |> map unwrap;
+  # Modules whose imports already aggregate other modules; including them in
+  # nixos-modules alongside the individual modules would double-import every
+  # leaf and fail with "option is already declared".
+  excluded = [ "common" ];
+  nixos-modules =
+    let
+      mods = self.modules.nixos;
+      include = name: !builtins.elem name excluded;
+    in
+    lib.attrNames mods |> lib.filter include |> map (name: unwrap mods.${name});
 in
 {
   # Helper functions for creating system / home-manager configurations
@@ -16,9 +25,11 @@ in
       {
         system, # System type
         hostName, # System hostname
+        configurationName,
         stateVersion,
         username,
         homedir ? "/home/${username}",
+        configdir ? "/home/${username}/.nixos",
         configuration ? { },
         extraModules ? [ ],
       }:
@@ -27,9 +38,13 @@ in
         modules = [
           {
             _module.args = {
-              inherit stateVersion;
-              inherit username;
-              inherit homedir;
+              inherit
+                stateVersion
+                configurationName
+                username
+                homedir
+                configdir
+                ;
             };
           }
           configuration

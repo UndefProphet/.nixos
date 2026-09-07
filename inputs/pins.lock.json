@@ -31,6 +31,14 @@
     "narHash": "sha256-7OxxwIdXZRagnvsnVVp4Ju3Qhmht8hljiS8b7SfGOe4=",
     "lastModified": 1782680989
   },
+  "hjem": {
+    "type": "github",
+    "owner": "feel-co",
+    "repo": "hjem",
+    "rev": "d248f0e4f7abd6e1f0eb9ace778dd7928481943e",
+    "narHash": "sha256-UrAlku7KST0DT+j1bdVGYI8tCz23PWL88uGMer3IZ2U=",
+    "lastModified": 1787500880
+  },
   "home-manager": {
     "type": "github",
     "owner": "nix-community",
@@ -94,14 +102,6 @@
     "rev": "2759f02d6bb7d1b5bcf4ae99038ab54148f91698",
     "narHash": "sha256-yd7gLFMW3tDMFsaX+yBVWys2Aux7l4PLUfkwt5fcPCo=",
     "lastModified": 1787390698
-  },
-  "nixos-credentials": {
-    "type": "git",
-    "url": "ssh://git@github.com/UndefProphet/.nixos.credentials",
-    "ref": "HEAD",
-    "rev": "0b09504dec26c7e38f6bfac3d64269dd50198a6d",
-    "narHash": "sha256-uJadYiEHqmdrKCkB7PTR1wpIOHQWUvNDExHpBnpUhNw=",
-    "lastModified": 1778297186
   },
   "nixpkgs": {
     "type": "github",
