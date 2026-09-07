@@ -10,11 +10,22 @@
         inputs = inputs;
       }; # to make tack compatiable with flake-parts
 
+      flakeLib = (import ./lib.nix) {
+        inherit inputs;
+        inherit (inputs.nixpkgs) lib;
+        self = self';
+      };
+
+      lib = inputs.nixpkgs.lib // flakeLib.config.flake.lib;
+
     in
     inputs.flake-parts.lib.mkFlake
       {
         inherit inputs;
         self = self';
+        specialArgs = {
+          inherit lib;
+        };
       }
       (
         inputs.import-tree [
