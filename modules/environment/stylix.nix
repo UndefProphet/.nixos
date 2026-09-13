@@ -1,3 +1,4 @@
+# TODO REMOVE Stylix and manage colorscheme manually
 { inputs, ... }: {
   # https://github.com/nix-community/stylix
   # Stylix is a theming framework for NixOS, Home Manager, nix-darwin, and Nix-on-Droid.
@@ -5,23 +6,6 @@
 
   flake.modules.nixos.stylix =
     { pkgs, ... }:
-    let
-      handofevil =
-        with pkgs;
-        stdenv.mkDerivation (finalAttrs: {
-          name = "hand-of-evil";
-          version = "1.2";
-
-          src = fetchTarball {
-            url = "https://github.com/Grief/hand-of-evil/releases/download/v1.2/hand-of-evil.tar.gz";
-            sha256 = "0ld10fm8vgyig4kh0yv0bimwfwr8m9fw9cw424za6hlf48cgx6dm";
-          };
-          installPhase = ''
-            mkdir -p $out/share/icons/${finalAttrs.name}
-            cp -r . $out/share/icons/${finalAttrs.name}
-          '';
-        });
-    in
     {
       imports = [
         inputs.stylix.nixosModules.stylix
@@ -32,7 +16,28 @@
         autoEnable = true;
         polarity = "dark";
         # base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+        # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+        # base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-bathory.yaml";
+        # base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-khold.yaml";
+
+        base16Scheme = {
+          base00 = "#000000";# ----
+          base01 = "#3c3836";# ---
+          base02 = "#504945";# --
+          base03 = "#665c54";# -
+          base04 = "#bdae93";# +
+          base05 = "#d5c4a1";# ++
+          base06 = "#ebdbb2";# +++
+          base07 = "#fbf1c7";# ++++
+          base08 = "#fb4934";# red
+          base09 = "#fe8019";# orange
+          base0A = "#fabd2f";# yellow
+          base0B = "#b8bb26";# green
+          base0C = "#8ec07c";# aqua/cyan
+          base0D = "#83a598";# blue
+          base0E = "#d3869b";# purple
+          base0F = "#d65d0e";# brown
+        };
 
         opacity =
           let
@@ -52,11 +57,11 @@
           light = "Papirus-Light"; # Dark mode seems to not be used sometimes.
         };
 
-        cursor = {
-          package = handofevil;
-          name = "hand-of-evil";
-          size = 24;
-        };
+        # cursor = {
+        #   package = handofevil;
+        #   name = "hand-of-evil";
+        #   size = 24;
+        # };
 
         fonts = {
           sizes =
@@ -98,6 +103,7 @@
 
           console.enable = true;
           spicetify.enable = false;
+          nixvim.enable = false;
         };
       };
 

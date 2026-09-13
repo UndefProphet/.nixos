@@ -37,10 +37,6 @@ url = "gh:FlameFlag/nixcord?ref=main"
 [inputs.nixos-core]
 url = "gh:manic-systems/nixos-core"
 
-[inputs.nixos-credentials]
-type = "fetch"
-url = "git+ssh://git@github.com/UndefProphet/.nixos.credentials"
-
 [inputs.nixpkgs]
 url = "gh:nixos/nixpkgs?ref=nixos-unstable"
 
