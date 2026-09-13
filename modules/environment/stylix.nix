@@ -1,3 +1,4 @@
+# TODO REMOVE Stylix and manage colorscheme manually
 { inputs, ... }: {
   # https://github.com/nix-community/stylix
   # Stylix is a theming framework for NixOS, Home Manager, nix-darwin, and Nix-on-Droid.
@@ -5,23 +6,6 @@
 
   flake.modules.nixos.stylix =
     { pkgs, ... }:
-    let
-      handofevil =
-        with pkgs;
-        stdenv.mkDerivation (finalAttrs: {
-          name = "hand-of-evil";
-          version = "1.2";
-
-          src = fetchTarball {
-            url = "https://github.com/Grief/hand-of-evil/releases/download/v1.2/hand-of-evil.tar.gz";
-            sha256 = "0ld10fm8vgyig4kh0yv0bimwfwr8m9fw9cw424za6hlf48cgx6dm";
-          };
-          installPhase = ''
-            mkdir -p $out/share/icons/${finalAttrs.name}
-            cp -r . $out/share/icons/${finalAttrs.name}
-          '';
-        });
-    in
     {
       imports = [
         inputs.stylix.nixosModules.stylix
@@ -52,11 +36,11 @@
           light = "Papirus-Light"; # Dark mode seems to not be used sometimes.
         };
 
-        cursor = {
-          package = handofevil;
-          name = "hand-of-evil";
-          size = 24;
-        };
+        # cursor = {
+        #   package = handofevil;
+        #   name = "hand-of-evil";
+        #   size = 24;
+        # };
 
         fonts = {
           sizes =
